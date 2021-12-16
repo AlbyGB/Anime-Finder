@@ -4,5 +4,4 @@
 
 ```
 pip install requests
-pip install tkinter
 ```
