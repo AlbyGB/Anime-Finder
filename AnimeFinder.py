@@ -29,7 +29,7 @@ root = tk.Tk()
 root.title("Anime Finder")
 root.geometry("500x500")
 root.resizable(False, False)
-root.iconbitmap(r"C:\Users\Drako\Desktop\Anime.ico")
+#root.iconbitmap(r"C:\Users\Drako\Desktop\Anime.ico")
 bottone = tk.Button(root, text="Select file", command=selec_file_thread, bg="#4860cb", fg="white", activebackground="#263887", activeforeground="white", highlightthickness=0, bd=0, relief = tk.SUNKEN)
 bottone.pack(fill=tk.X)
 
