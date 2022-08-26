@@ -1,40 +1,16 @@
-import requests
-import tkinter as tk
-from tkinter import filedialog as fd
-import threading
+import imgui
 
-#create another thread to avoid blocking the GUI
-def selec_file_thread():
-  threading.Thread(target=selec_file).start()
+imgui.create_context()
+imgui.get_io().display_size = 800, 600
+imgui.get_io().fonts.get_tex_data_as_rgba32()
 
-def selec_file():
-  immagine = fd.askopenfilename(initialdir="/", title="Select file", filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
+imgui.new_frame()
 
-  if not immagine:
-    return
+imgui.begin("Anime Finder", True)
 
-  request = requests.post("https://api.trace.moe/search",
-    data=open(immagine, "rb").read(),
-    headers={"Content-Type": "image/jpeg"}
-  ).json()
-  
-  T.config(state=tk.NORMAL)
-  T.delete(1.0, tk.END)
-  for key, value in request["result"][0].items():
-    T.insert(tk.END, f"{key}: {value}\n\n")
+imgui.text("sono un testo")
 
-  T.config(state=tk.DISABLED)
+imgui.end()
 
-root = tk.Tk()
-root.title("Anime Finder")
-root.geometry("500x500")
-root.resizable(False, False)
-#root.iconbitmap(r"C:\Users\Drako\Desktop\Anime.ico")
-bottone = tk.Button(root, text="Select file", command=selec_file_thread, bg="#4860cb", fg="white", activebackground="#263887", activeforeground="white", highlightthickness=0, bd=0, relief = tk.SUNKEN)
-bottone.pack(fill=tk.X)
-
-T = tk.Text(root, height=250, width=500, bg="#363940", fg="white", font=("Arial", 12))
-T.config(state=tk.DISABLED)
-T.pack()
-
-root.mainloop()
+imgui.render()
+imgui.end_frame()
